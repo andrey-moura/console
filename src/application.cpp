@@ -3,13 +3,13 @@
 #include <iostream>
 #include <sstream>
 
-using namespace andy;
+using namespace lavi;
 using namespace routing;
 using namespace console;
 
 void print_help()
 {
-    auto& routes = andy::routing::get_routes();
+    auto& routes = lavi::routing::get_routes();
 
     log_warning("COMMANDS:");
 

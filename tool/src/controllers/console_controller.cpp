@@ -25,7 +25,7 @@ void console_controller::new_project()
 R"~~~(#include <iostream>
 #include <application.hpp>
 
-using namespace andy;
+using namespace lavi;
 using namespace routing;
 using namespace console;
 
@@ -35,7 +35,7 @@ DECLARE_CONSOLE_APPLICATION(
 )
 )~~~";
 
-    andy::file::write_all_text(project_root / "config" / "routes.cpp", routes_template);
+    lavi::file::write_all_text(project_root / "config" / "routes.cpp", routes_template);
 
     static std::string cmake_template =
     std::format(
@@ -56,7 +56,7 @@ add_custom_command(TARGET {}
 
 )~~~", project_name.to_downcase(), project_name.to_downcase(), project_name.to_downcase(), project_name.to_downcase(), project_name.to_downcase(), project_name.to_downcase());
 
-    andy::file::write_all_text(project_root / "CMakeLists.txt", cmake_template);
+    lavi::file::write_all_text(project_root / "CMakeLists.txt", cmake_template);
 
     if(params.key("--git") != null) {
         std::cout << "Initializing git repository..." << std::endl;
@@ -66,7 +66,7 @@ add_custom_command(TARGET {}
 void console_controller::controller()
 {
     if(params.size() < 1) {
-        andy::console::log_error("error: missing param 'controller name'");
+        lavi::console::log_error("error: missing param 'controller name'");
         return;        
     }
 
@@ -75,7 +75,7 @@ void console_controller::controller()
     std::filesystem::path controller_source = project_root / "src" / "controllers";
 
     if(!std::filesystem::exists(controller_include) || !std::filesystem::exists(controller_source)) {
-        andy::console::log_error("error: cannot find controllers folder");
+        lavi::console::log_error("error: cannot find controllers folder");
         return;
     }
 
@@ -84,7 +84,7 @@ void console_controller::controller()
     const char* const controller_header_format =
 R"~~~(#include <application.hpp>
 
-using namespace andy;
+using namespace lavi;
 using namespace routing;
 using namespace console;
 
@@ -105,7 +105,7 @@ R"~~~(#include <{}_controller.hpp>
 
 )~~~";
 
-    andy::file::write_all_text(controller_include / (controller_name + "_controller.hpp"), std::format(controller_header_format, controller_name));
-    andy::file::write_all_text(controller_source  / (controller_name + "_controller.cpp"), std::format(controller_source_format, controller_name));
+    lavi::file::write_all_text(controller_include / (controller_name + "_controller.hpp"), std::format(controller_header_format, controller_name));
+    lavi::file::write_all_text(controller_source  / (controller_name + "_controller.cpp"), std::format(controller_source_format, controller_name));
 
 }

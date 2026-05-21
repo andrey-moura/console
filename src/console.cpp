@@ -2,7 +2,7 @@
 #include <filesystem>
 #include <fstream>
 
-void andy::console::put_on_cout(const std::string & msg)
+void lavi::console::put_on_cout(const std::string & msg)
 {
     std::cout << msg << std::endl;
 }
@@ -23,46 +23,46 @@ std::ofstream& get_log()
     return *stream;
 }
 
-void andy::console::log(const std::string &msg)
+void lavi::console::log(const std::string &msg)
 {
     std::cout << msg << std::endl;
 }
 
-void andy::console::log_error(const std::string& msg)
+void lavi::console::log_error(const std::string& msg)
 {
-    std::cerr << andy::console::color(andy::console::color_code::red) << msg << std::endl;
+    std::cerr << lavi::console::color(lavi::console::color_code::red) << msg << std::endl;
 }
 
-void andy::console::log_success(const std::string& msg)
+void lavi::console::log_success(const std::string& msg)
 {
-    std::cout << andy::console::color(andy::console::color_code::green) << msg << std::endl;
+    std::cout << lavi::console::color(lavi::console::color_code::green) << msg << std::endl;
 }
 
-void andy::console::print_warning(std::string_view msg)
+void lavi::console::print_warning(std::string_view msg)
 {
-    std::cout << andy::console::color(andy::console::color_code::yellow) << msg.data();
+    std::cout << lavi::console::color(lavi::console::color_code::yellow) << msg.data();
 }
 
-void andy::console::log_warning(const std::string &msg) {
-  std::cout << andy::console::color(andy::console::color_code::yellow) << msg
+void lavi::console::log_warning(const std::string &msg) {
+  std::cout << lavi::console::color(lavi::console::color_code::yellow) << msg
             << std::endl;
 }
 
-void andy::console::log_debug(const std::string& msg)
+void lavi::console::log_debug(const std::string& msg)
 {
 #ifdef __ANDY_DEBUG__
     get_log() << msg << std::endl;
 #endif
 }
 
-std::vector<std::string>& andy::console::get_args()
+std::vector<std::string>& lavi::console::get_args()
 {
     static std::vector<std::string> args;
 
     return args;
 }
 
-std::map<std::string, std::string>& andy::console::get_named_args()
+std::map<std::string, std::string>& lavi::console::get_named_args()
 {
     static std::map<std::string, std::string> named_args;
 
@@ -70,7 +70,7 @@ std::map<std::string, std::string>& andy::console::get_named_args()
 }
 
 
-void andy::console::init_args(const int argc, char** argv)
+void lavi::console::init_args(const int argc, char** argv)
 {
     auto& args = get_args();
     auto& named_args = get_named_args();
@@ -111,17 +111,17 @@ void andy::console::init_args(const int argc, char** argv)
     }
 }
 
-size_t andy::console::args_count()
+size_t lavi::console::args_count()
 {
     return get_args().size();
 }
 
-bool andy::console::has_args()
+bool lavi::console::has_args()
 {
     return args_count();
 }
 
-std::string andy::console::front_arg()
+std::string lavi::console::front_arg()
 {
     if(!has_args()) {
         throw std::out_of_range("front_arg error: there is no arguments");

@@ -13,7 +13,7 @@
     #include <windows.h>
 #endif
 
-namespace andy
+namespace lavi
 {
     namespace console
     {
